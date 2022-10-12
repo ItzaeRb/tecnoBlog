@@ -4,6 +4,33 @@
     border: 1px solid red;
 }
 
+nav{
+    background-color: #031926;
+}
+
+.titulo_nav{
+    color: aqua;
+    text-decoration: none;
+    font-size:x-large;
+}
+
+.nav-link{
+    color: aliceblue;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.nav-item :hover{
+    color:;
+}
+
+.bi-pc-display{
+    color: aqua;
+    margin-left:5px; 
+    margin-right: 10px; 
+}
+
+
 .contenidoEstudiantes{
     background-color: #030354;
     display: flex;
