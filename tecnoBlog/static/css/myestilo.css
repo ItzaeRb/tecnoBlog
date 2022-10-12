@@ -1,3 +1,7 @@
+body{
+    background-color: #596c79;
+}
+
 .contenido1{
     position: relative;
     top: 60px;
@@ -21,7 +25,7 @@ nav{
 }
 
 .nav-item :hover{
-    color:;
+    color: ;
 }
 
 .bi-pc-display{
