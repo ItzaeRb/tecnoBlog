@@ -19,9 +19,4 @@ class Blogs(models.Model):
     autor = models.CharField(max_length=60)
     fecha = models.DateField()
 
-class Mensajes(models.Model):
-    idMensaje = models.IntegerField()
-    destinatario = models.CharField(max_length=60)
-    contenido = models.CharField(max_length=140)
-    remitente = models.CharField(max_length=60)
-    fecha = models.DateField()
+

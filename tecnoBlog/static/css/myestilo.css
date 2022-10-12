@@ -42,15 +42,20 @@ nav{
     align-items: center;
     padding: 20px;
 }
-.formDataEstudiantes{
+.contenido_home{
+    display: flex;
+    width: 40%;
+    height: auto;
+    margin:auto;
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
-    width: 500px;
-    gap: 10px;
     background-color: white;
     border-radius: 5px;
     padding: 20px;
-    color: blue;
+    color: black;
+    box-shadow: 3px 2px 15px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .btndj{
