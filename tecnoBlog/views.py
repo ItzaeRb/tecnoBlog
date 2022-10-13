@@ -1,9 +1,8 @@
-from curses.ascii import HT
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .forms import UserRegisterForm
+from tecnoBlog.forms import UserRegisterForm
 
 
 # Create your views here.
