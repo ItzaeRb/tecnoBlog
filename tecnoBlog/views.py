@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm
+from tecnoBlog.models import *
 
 
 # Create your views here.
@@ -37,6 +38,13 @@ def registroUsuario(request):
     form = UserRegisterForm()
     return render(request, "registroUsuario.html", {"form":form})
 
+def nuevoPost(request):
+    if request.method == 'POST':
+        blog = Blogs(nombre = request.POST['nombre'], apellido = request.POST['apellido'], email = request.POST['email'])
+        blog.save()
+        blogs = Blogs.objects.all()    
+        return render(request, "estudiantesCRUD/read_estudiantes.html", {"estudiantes": blogs})
+    return render(request, "estudiantesCRUD/create_estudiantes.html")
 
 
 #def login(request):
