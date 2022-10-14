@@ -40,15 +40,15 @@ def registroUsuario(request):
 
 def verPosts(request=None):
     blogs = Blogs.objects.all() #Trae todo
-    return render(request, "postsCRUD/verPosts.html", {"blogs": blogs})
+    return render(request, "verPosts.html", {"blogs": blogs})
 
 def nuevoPost(request):
     if request.method == 'POST':
-        blog = Blogs(nombre = request.POST['nombre'], apellido = request.POST['apellido'], email = request.POST['email'])
+        blog = Blogs(idBlog = request.POST['idPost'], titulo = request.POST['tituloPost'], subtitulo = request.POST['subtituloPost'], contenido = request.POST['myeditor'], autor = request.POST['autorPost'], fecha = request.POST['fechaPost'])
         blog.save()
         blogs = Blogs.objects.all()    
-        return render(request, "postsCRUD/verPosts.html", {"estudiantes": blogs})
-    return render(request, "postsCRUD/nuevoPost.html")
+        return render(request, "verPosts.html", {"blogs": blogs})
+    return render(request, "nuevoPost.html")
 
 
 #def login(request):

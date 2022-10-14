@@ -1,0 +1,51 @@
+{% extends 'homePage.html' %}
+
+{% block content %}
+<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+
+<script>
+    window.onload = function() {
+        CKEDITOR.replace('myeditor');
+    };
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#myeditor').ckeditor({
+            toolbar: 'Full',
+            enterMode : CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_P
+        });
+    });
+    </script>
+
+<div class="contenido_home">
+    <div>
+        <form class="formNuevoPost" method="POST" action="/tecnoBlog/nuevoPost">{% csrf_token %}
+            <legend>ID: </legend>
+                <input type="number" name="idPost" id="idPost">
+                <br>
+            <legend>Título: </legend>
+                <input type="text" name="tituloPost" id="tituloPost">
+            <br>
+            <legend>Subtítulo: </legend>
+                <input type="text" name="subtituloPost" id="subtituloPost">
+                <br>
+            <legend>Autor: </legend>
+                <input type="text" name="autorPost" id="autorPost">
+                <br>
+            <legend>Fecha: </legend>
+                <input type="date" name="fechaPost" id="fechaPost">
+                <br>
+                <br>
+            <legend>Contenido</legend>
+                <br>
+                <textarea name="myeditor" placeholder="Contenido del post"></textarea>
+            <br>
+            <button type="submit" class="btn btn-primary btndj">Publicar</button>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}

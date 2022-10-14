@@ -63,10 +63,31 @@ nav{
     text-align: center;
 }
 
+.ckeditor{
+    text-align: center;
+    width: 80%;
+}
+
+.listaPosts{
+    background-color: #468189;
+    width: 30%;
+}
+
 .btndj{
     border-radius: 20px !important;
 }
 
+.div_btn{
+    text-align: center;
+}
 
+.leerMas{
+    text-decoration: none;
+    color: white;
+}
+
+.leerMas:hover{
+    color: #031926;
+}
 
 /*soy un comentario*/

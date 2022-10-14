@@ -1,0 +1,22 @@
+{% extends 'homePage.html' %}
+
+{% block content %}
+    
+    <div class="contenido_home">
+        {% for blog in blogs %}
+            <div class="listaPosts">
+                <h3><b>{{ blog.titulo }}</b></h3>
+                <label for=""> Publicado por: {{ blog.autor }}</label>
+                <br>
+                <p>{{ blog.fecha }}</p>
+                <p>{{ blog.contenido }}</p>
+                <a class="leerMas" href="">Leer mas ></a>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="div_btn">
+    <a class="btn btn-success" href="/tecnoBlog/nuevoPost">+ Publicar un post</a>
+    </div>
+{% endblock %}
