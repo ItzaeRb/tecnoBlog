@@ -25,6 +25,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('homePage', homePage),
     path('', homePage),
     path('', include("tecnoBlog.urls"))
 

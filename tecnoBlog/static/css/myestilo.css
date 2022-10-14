@@ -42,12 +42,17 @@ nav{
     align-items: center;
     padding: 20px;
 }
+
+.encabezado{
+    text-align: center;
+}
+
 .contenido_home{
     display: flex;
-    width: 40%;
+    width: 90%;
     height: auto;
     margin:auto;
-    margin-top: 10%;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     background-color: white;
