@@ -9,11 +9,12 @@
                 <label for=""> Publicado por: {{ blog.autor }}</label>
                 <br>
                 <p>{{ blog.fecha }}</p>
-                <p>{{ blog.contenido }}</p>
+                <p>{{ blog.contenido | safe }}</p>
                 <a class="leerMas" href="">Leer mas ></a>
             </div>
             <br>
         {% endfor %}
+        <br>
     </div>
     <br>
     <div class="div_btn">

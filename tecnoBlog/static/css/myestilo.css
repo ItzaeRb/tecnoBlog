@@ -47,13 +47,22 @@ nav{
     text-align: center;
 }
 
+.login{
+    display: flex;
+    width: 30%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+
 .contenido_home{
     display: flex;
     width: 90%;
     height: auto;
     margin:auto;
     margin-top: 10px;
-    display: flex;
     flex-direction: column;
     background-color: white;
     border-radius: 5px;

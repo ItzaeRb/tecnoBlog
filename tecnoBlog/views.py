@@ -26,6 +26,7 @@ def login_request(request):
     form = AuthenticationForm()
     return render(request, "login.html", {"form":form})
 
+
 def registroUsuario(request):
     form = UserRegisterForm(request.POST)
     if request.method == "POST":
@@ -37,6 +38,8 @@ def registroUsuario(request):
             return render(request, "registroUsuario.html", {"form":form})
     form = UserRegisterForm()
     return render(request, "registroUsuario.html", {"form":form})
+
+
 
 def verPosts(request=None):
     blogs = Blogs.objects.all() #Trae todo
