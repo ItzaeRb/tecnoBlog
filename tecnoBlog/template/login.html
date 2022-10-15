@@ -3,11 +3,12 @@
 {% block content %}
 
 <div class="contenido_home">
-  <div class="login">
-    {{form}}
-    <br>
-    <button class="btn btn-primary btndj" type="submit" >Iniciar Sesion</button>
-  </div>
+    <form class="login"method="POST">
+      {% csrf_token %}
+      {{form}}
+      <br>
+      <button class="btn btn-primary btndj" type="submit" >Iniciar Sesion</button>
+    </form>
 </div>
 
 {% endblock %}
