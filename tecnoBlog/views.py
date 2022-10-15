@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 
+from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm
@@ -41,7 +43,7 @@ def registroUsuario(request):
             form.save()
             return redirect("/login")
         else:
-            return render(request, "registroUsuario.html", {"form":form})
+            return render(request, "login.html", {"form":form})
     form = UserRegisterForm()
     return render(request, "registroUsuario.html", {"form":form})
 

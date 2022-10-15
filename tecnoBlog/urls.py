@@ -7,6 +7,7 @@ urlpatterns = [
     path('', inicio),
     path('login/', login_request),
     path('signIn/', registroUsuario),
+    path('logout/', LogoutView.as_view(template_name = 'homePage.html'), name="Logout" ),
     path('tecnoBlog/nuevoPost', nuevoPost),
     path('tecnoBlog/verPosts', verPosts),
 ]
