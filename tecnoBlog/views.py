@@ -53,6 +53,7 @@ def verPosts(request=None):
     blogs = Blogs.objects.all() #Trae todo
     return render(request, "verPosts.html", {"blogs": blogs})
 
+@login_required
 def nuevoPost(request):
     if request.method == 'POST':
         blog = Blogs(idBlog = request.POST['idPost'], titulo = request.POST['tituloPost'], subtitulo = request.POST['subtituloPost'], contenido = request.POST['myeditor'], autor = request.POST['autorPost'], fecha = request.POST['fechaPost'])
