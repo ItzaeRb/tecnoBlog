@@ -1,12 +1,13 @@
 {% extends 'homePage.html' %}
 
 {% block content %}
-
-    <form action="" method="POST">
+<div class="contenido_home">
+    <form class="signin" action="" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
 
-        <button type="submit">Registrarte</button>
+        <button class="btn btn-primary btndj" type="submit">Registrarte</button>
     </form>
+</div>
 
 {% endblock %}

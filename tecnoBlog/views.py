@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
+
+#librerías para el login
 from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm
@@ -16,11 +20,13 @@ def login_request(request):
         if form.is_valid():
             user = form.cleaned_data.get("username")
             pwd = form.cleaned_data.get("password")
-            user = AuthenticationForm(username = user, password = pwd)
+
+            user = authenticate(username = user, password = pwd)
             if user is not None:
-                login_request(request, user)
+                login(request, user)
                 return render(request, "homePage.html")
             else:
+                #Si los datos de autenticacion no son correctos:
                 return render(request, "login.html", {"form": form})
         return render(request, "login.html", {"form": form})
     form = AuthenticationForm()
