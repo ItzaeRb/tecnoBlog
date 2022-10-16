@@ -17,6 +17,9 @@ class Blogs(models.Model):
     subtitulo = models.CharField(max_length=60)
     contenido = models.CharField(max_length=500)
     autor = models.CharField(max_length=60)
-    fecha = models.DateField()
+    fecha = models.DateTimeField(auto_now_add=True)# le pone automaticamente la hora y la fecha.
+    
+    def __str__(self):
+        return self.titulo + ' --> creado por --> ' + self.autor 
 
 
