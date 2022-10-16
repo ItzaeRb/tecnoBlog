@@ -1,0 +1,13 @@
+{% extends 'homePage.html' %}
+
+{% block content %}
+<h1>hola signin</h1>
+{{ error }}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Iniciar Sesion
+    </button>
+</form>
+{% endblock %}
