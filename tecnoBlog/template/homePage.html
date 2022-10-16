@@ -32,11 +32,14 @@
                   </li>
                  
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Páginas</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Inicio</a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="login.html">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    {% if user.is_authenticated %}
+                      <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                    {% else %}
+                      <li><a class="dropdown-item" href="/signin/">Iniciar Sesion</a></li>
+                      <li><a class="dropdown-item" href="/signup/">Registrar Cuenta</a></li>
+                    {% endif %}
                     </ul>
                   </li>
                 </ul>
