@@ -36,6 +36,8 @@
                     <ul class="dropdown-menu">
                     {% if user.is_authenticated %}
                       <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                      <li><a class="dropdown-item" href="/nuevoPost/">Crear post</a></li>
+                      <li><a class="dropdown-item" href="/verPosts/">Ver post</a></li>
                     {% else %}
                       <li><a class="dropdown-item" href="/signin/">Iniciar Sesion</a></li>
                       <li><a class="dropdown-item" href="/signup/">Registrar Cuenta</a></li>
