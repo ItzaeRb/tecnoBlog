@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 
 #librerías para el login
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 
@@ -83,3 +83,17 @@ def editProfile(request):
     return render(request, 'editProfile.html', {'form':form, 'usuario':usuario}) 
 
 
+@login_required
+def changepass(request):
+    usuario = request.user
+    if request.method == 'POST':
+        form = PasswordChangeForm(data = request.POST, user = usuario)
+        #form = ChangePasswordForm(data = request.POST, user = request.user)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return render(request, 'homePage.html')
+    else:
+        form = PasswordChangeForm(request.user)
+        #form = ChangePasswordForm(user = request.user)
+    return render(request, 'changePassword.html', {'form': form, 'usuario': usuario})
