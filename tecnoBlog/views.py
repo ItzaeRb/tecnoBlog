@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 
 #librerías para el login
-from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from tecnoBlog.forms import UserRegisterForm
+from tecnoBlog.forms import UserRegisterForm, UserEditForm
 from tecnoBlog.models import *
 
 
@@ -53,6 +53,7 @@ def verPosts(request=None):
     blogs = Blogs.objects.all() #Trae todo
     return render(request, "verPosts.html", {"blogs": blogs})
 
+
 @login_required
 def nuevoPost(request):
     if request.method == 'POST':
@@ -62,16 +63,23 @@ def nuevoPost(request):
         return render(request, "verPosts.html", {"blogs": blogs})
     return render(request, "nuevoPost.html")
 
+@login_required
+def editProfile(request):
+    usuario = request.user
+    user_basic_info = User.objects.get(id = usuario.id)
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance = usuario) 
+        if form.is_valid():
+            user_basic_info.username = form.cleaned_data.get('username')
+            user_basic_info.email = form.cleaned_data.get('email')
+            user_basic_info.first_name = form.cleaned_data.get('first_name')
+            user_basic_info.last_name  = form.cleaned_data.get('last_name')
+            user_basic_info.save()
+            return render(request, 'homePage.html')
+        else:
+            return render(request, 'homePage.html', {'form':form})
+    else: 
+        form = UserEditForm(initial={'email': usuario.email, 'username': usuario.username, 'first_name': usuario.first_name, 'last_name': usuario.last_name })
+    return render(request, 'editProfile.html', {'form':form, 'usuario':usuario}) 
 
-#def login(request):
-#    if request.method == 'GET':
-#        return render(request, 'login.html', {'form': UserCreationForm})
-#    else:
-#        if request.POST['password1'] ==  request.POST['password2']:
-#            try:        
-#                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
-#                user.save() # lo guarda dentro de la base de datos
-#                return HttpResponse('Usuario creado')
-#            except:
-#                return HttpResponse('no  pudo crear el usuario')
-#        return HttpResponse('Pass do not match')
+

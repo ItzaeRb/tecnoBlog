@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name = 'homePage.html'), name="Logout" ),
     path('tecnoBlog/nuevoPost', nuevoPost),
     path('tecnoBlog/verPosts', verPosts),
+    path('profile/editarPerfil', editProfile),
+    
 ]

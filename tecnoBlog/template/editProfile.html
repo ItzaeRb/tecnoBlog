@@ -1,0 +1,19 @@
+{% extends 'homePage.html' %}
+
+{% block content %}
+
+<div class="contenido_home">
+    <h1>Editar Perfil</h1>
+    <!--<h3>{{ usuario }}</h3>-->
+    <form class="editarPerfil" method="POST"> {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <br>
+        <input type="submit" value="Editar Perfil">
+    </form>
+
+</div>
+<!--<a href="/AppCoder/perfil/changepass/">Cambiar Contraseña</a>-->
+
+{% endblock %}

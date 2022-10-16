@@ -65,6 +65,15 @@ nav{
     flex-direction: column;
 }
 
+.editarPerfil{
+    display: flex;
+    width: 30%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
 
 .contenido_home{
     display: flex;
