@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Usuarios(models.Model):
     idUsuario = models.IntegerField()
@@ -22,4 +22,6 @@ class Blogs(models.Model):
     def __str__(self):
         return self.titulo + ' --> creado por --> ' + self.autor 
 
-
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE) #vinculamos el avatar con el usuario
+    image = models.ImageField(upload_to='avatares', null = True, blank = True) # lo cargamos como avatares, queda nulo o  blanco.
