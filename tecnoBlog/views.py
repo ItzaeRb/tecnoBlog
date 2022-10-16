@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate, update_session_auth
 
 from theFinalProject.view import homePage #codifica la contrase;a
 from .models import *
-from .forms import UserRegisterForm, blogForm, UserEditForm, changePasswordForm
+from .forms import UserRegisterForm, blogForm, UserEditForm, changePasswordForm, avatarForm
 from django.contrib.auth.decorators import login_required 
 
 # Create your views here.
@@ -112,3 +112,22 @@ def changePass(request):
 @login_required
 def perfilView(request):
     return render(request, 'perfil.html')
+
+
+@login_required
+def agregarAvatar(request):
+    if request.method == 'POST':
+        form = avatarForm(request.POST, request.FILE) # .file para tener la interpretacion de un archivo.
+        if form.is_valid():
+            user = User.objects.get(username = request.user)
+            avatar = Avatar(user = user, image = form.cleaned_data['avatar'], id = request.user.id)
+            avatar.save()
+            avatar = Avatar.objects.filter(user = request.user.id)
+            return render(request, 'home.html', {'avatar': avatar[0]}.image.url) # oapra mostrar el avatar todas lsa veces que se llame a home.html
+    else:
+        try:
+            avatar = Avatar.objects.filter(user = request.user.id)
+            form = avatarForm()
+        except:
+            form = avatarForm()
+    return render(request, 'agregarAvatar.html', {'form': form}) 
