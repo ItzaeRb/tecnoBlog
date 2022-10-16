@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
+from .models import *
+from .forms import UserRegisterForm, blogForm, UserEditForm
+from django.contrib.auth.decorators import login_required 
 
 # Create your views here.
 def inicio(request):
@@ -24,6 +27,18 @@ def signup(request):
                 return render(request, 'signup.html', {'form':UserCreationForm, 'error':'No se pudo crear el usuario, intente nuevamente'})
         return render(request, 'signup.html', {'form':UserCreationForm, 'error':'Las pass no coinciden'})
 
+def registro(request):
+    form = UserRegisterForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect(signin)
+        else:
+            return render(request, 'registro.html', {'form': form})
+    form = UserRegisterForm()
+    return render(request, 'registro.html', {'form': form})
+
+
 
 def signin(request):
     if request.method == 'GET':
@@ -36,7 +51,42 @@ def signin(request):
             login(request, user)#loguea al usuario ya atutenicado y guarda la sesion
             return redirect('/homePage/')
 
-
+@login_required
 def signout(request):
     logout(request)
     return redirect(inicio)
+
+@login_required
+def verPosts(request=None):
+    forms = Blogs.objects.all() #Trae todo
+    return render(request, "verPosts.html", {"forms": forms})
+
+@login_required
+def nuevoPost(request):
+    if request.method == 'POST':
+        blog = Blogs(idBlog = request.POST['idPost'], titulo = request.POST['tituloPost'], subtitulo = request.POST['subtituloPost'], contenido = request.POST['myeditor'], autor = request.POST['autorPost'], fecha = request.POST['fechaPost'])
+        blog.save()
+        blogs = Blogs.objects.all()    
+        return render(request, "verPosts.html", {"blogs": blogs})
+    return render(request, "nuevoPost.html")
+
+
+@login_required
+def editarUsuario(request, usuario_id):
+    user_basic_info = User.objects.get(id = usuario_id)
+    if request.method == "POST":
+        form = UserEditForm(request.POST)
+        if form.is_valid():
+            #datos a actualizar
+            user_basic_info.username = form.cleaned_data.get("username")
+            user_basic_info.email = form.cleaned_data.get("email")
+            user_basic_info.first_name = form.cleaned_data.get("first_name")
+            user_basic_info.last_name = form.cleaned_data.get("last_name")
+            user_basic_info.save()
+            usuario = User.objects.all()
+            return render(request, "homePage.html", {'usuario':usuario})
+        else:
+            return render(request, "homePage.html", {"form": form})
+    else:
+        form = UserEditForm(initial={"email": usuario.email, "username": usuario.username, "first_name":usuario.first_name, "last_name": usuario.last_name})
+    return render(request, "editarUsuario.html", {"form":form, "usuario":usuario})
