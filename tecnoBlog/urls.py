@@ -14,5 +14,5 @@ urlpatterns = [
     path('registro/', registro),
     path('changePass/', changePass),
     path('perfil/', perfilView),
-
+    path('agregarAvatar/', agregarAvatar)
 ]
