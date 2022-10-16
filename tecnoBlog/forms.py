@@ -40,3 +40,8 @@ class changePasswordForm(PasswordChangeForm):
         model = User
         fields = ['old_password1', 'new_password1', 'new_password2']
         help_text = {k:"" for k in fields}
+
+
+class avatarForm(forms.Form):
+    avatar = forms.ImageField()#pide una imagen para seleccionar un avatar
+
