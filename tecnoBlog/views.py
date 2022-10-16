@@ -1,10 +1,14 @@
+from ast import Pass
+from django.forms import PasswordInput
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
+
+from theFinalProject.view import homePage #codifica la contrase;a
 from .models import *
-from .forms import UserRegisterForm, blogForm, UserEditForm
+from .forms import UserRegisterForm, blogForm, UserEditForm, changePasswordForm
 from django.contrib.auth.decorators import login_required 
 
 # Create your views here.
@@ -90,3 +94,21 @@ def editarUsuario(request, usuario_id):
     else:
         form = UserEditForm(initial={"email": usuario.email, "username": usuario.username, "first_name":usuario.first_name, "last_name": usuario.last_name})
     return render(request, "editarUsuario.html", {"form":form, "usuario":usuario})
+
+
+@login_required
+def changePass(request):
+    usuario = request.user #traemos los datos del usuario
+    if request.method == 'POST':
+        form = changePasswordForm(data = request.POST, user = usuario) #un form que nos da django
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return render(request, 'homePage.html')
+    else:
+        form = changePasswordForm(user = request.user)
+    return render(request, 'changePass.html', {'form':form}, {'usuario': usuario})
+
+@login_required
+def perfilView(request):
+    return render(request, 'perfil.html')
