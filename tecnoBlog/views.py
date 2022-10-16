@@ -97,3 +97,8 @@ def changepass(request):
         form = PasswordChangeForm(request.user)
         #form = ChangePasswordForm(user = request.user)
     return render(request, 'changePassword.html', {'form': form, 'usuario': usuario})
+
+
+@login_required
+def perfilView(request):
+    return render(request, 'verPerfil.html')
