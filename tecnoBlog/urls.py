@@ -10,7 +10,9 @@ urlpatterns = [
     path('homePage/', inicio),
     path('verPosts/', verPosts),
     path('nuevoPost/', nuevoPost),
-    path('perfil/editarUsuario/', editarUsuario),
+    path('editarUsuario/', editarUsuario),
     path('registro/', registro),
+    path('changePass/', changePass),
+    path('perfil/', perfilView),
 
 ]
