@@ -1,7 +1,6 @@
 from re import template
 from django.urls import path
 from .views import *
-from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', inicio),
@@ -9,4 +8,9 @@ urlpatterns = [
     path('signin/', signin),
     path('logout/', signout),
     path('homePage/', inicio),
+    path('verPosts/', verPosts),
+    path('nuevoPost/', nuevoPost),
+    path('perfil/editarUsuario/', editarUsuario),
+    path('registro/', registro),
+
 ]
