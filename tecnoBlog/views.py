@@ -30,7 +30,6 @@ def login_request(request):
             else:
                 #Si los datos de autenticacion no son correctos:
                 return render(request, "login.html", {"form": form})
-                
         return render(request, "login.html", {"form": form})
     form = AuthenticationForm()
     return render(request, "login.html", {"form":form})

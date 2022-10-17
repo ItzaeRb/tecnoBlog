@@ -5,6 +5,7 @@ from tecnoBlog.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('', inicio),
+    path('', inicioAdmin),
+    path('tecnoBlogAdmin/login', loginAdmin),
     path('tecnoBlogAdmin/nuevoPost', nuevoPost),
 ]
