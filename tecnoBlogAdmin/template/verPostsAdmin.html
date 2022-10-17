@@ -1,0 +1,19 @@
+{% extends 'homePageAdmin.html' %}
+
+{% block content %}
+    
+    <div class="contenido_home">
+        {% for blog in blogs %}
+            <div class="listaPosts">
+                <h3><b>{{ blog.titulo }}</b></h3>
+                <label for=""> Publicado por: {{ blog.autor }}</label>
+                <br>
+                <p>{{ blog.fecha }}</p>
+                <p>{{ blog.contenido | safe }}</p>
+                <a class="leerMas" href="">Leer mas ></a>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

@@ -8,4 +8,5 @@ urlpatterns = [
     path('tecnoBlogAdmin/login', loginAdmin),
     path('logoutAdmin/', LogoutView.as_view(template_name = 'homePage.html')),
     path('tecnoBlogAdmin/nuevoPost', nuevoPost),
+    path('tecnoBlogAdmin/verPostsAdmin',verPostsAdmin),
 ]

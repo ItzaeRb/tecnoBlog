@@ -47,3 +47,8 @@ def nuevoPost(request):
         blogs = Blogs.objects.all()    
         return render(request, "verPosts.html", {"blogs": blogs})
     return render(request, "nuevoPost.html")
+
+@login_required
+def verPostsAdmin(request=None):
+    blogs = Blogs.objects.all() #Trae todo
+    return render(request, "verPostsAdmin.html", {"blogs": blogs})
