@@ -1,3 +1,4 @@
+from tkinter.messagebox import NO
 from django.shortcuts import render, redirect
 
 #librerías para el login
@@ -26,7 +27,7 @@ def loginAdmin(request):
             pwd = form.cleaned_data.get("password")
 
             user = authenticate(username = user, password = pwd)
-            if user.get_username == 'tecnoBlogAdmin':
+            if user is not None:
                 login(request, user)
                 return render(request, "homePageAdmin.html")
             else:
