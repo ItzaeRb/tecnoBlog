@@ -56,7 +56,7 @@ ROOT_URLCONF = 'theFinalProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [f'{BASE_DIR}/tecnoBlog/template'],
+        'DIRS': [f'{BASE_DIR}/tecnoBlog/template', f'{BASE_DIR}/tecnoBlogAdmin/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
