@@ -55,15 +55,6 @@ def verPosts(request=None):
 
 
 @login_required
-def nuevoPost(request):
-    if request.method == 'POST':
-        blog = Blogs(idBlog = request.POST['idPost'], titulo = request.POST['tituloPost'], subtitulo = request.POST['subtituloPost'], contenido = request.POST['myeditor'], autor = request.POST['autorPost'], fecha = request.POST['fechaPost'])
-        blog.save()
-        blogs = Blogs.objects.all()    
-        return render(request, "verPosts.html", {"blogs": blogs})
-    return render(request, "nuevoPost.html")
-
-@login_required
 def editProfile(request):
     usuario = request.user
     user_basic_info = User.objects.get(id = usuario.id)
