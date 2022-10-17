@@ -13,7 +13,9 @@ from tecnoBlog.forms import UserRegisterForm, UserEditForm
 from tecnoBlog.models import *
 from tecnoBlogAdmin.models import *
 
-
+@login_required
+def homePageAdmin(request):
+    return render(request, "homePageAdmin.html")
 
 # Create your views here.
 @login_required

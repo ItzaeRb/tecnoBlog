@@ -4,6 +4,7 @@ from tecnoBlogAdmin.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
+    path('homePageAdmin/', homePageAdmin),
     path('tecnoBlogAdmin/', inicioAdmin),
     path('tecnoBlogAdmin/login', loginAdmin),
     path('logoutAdmin/', LogoutView.as_view(template_name = 'homePage.html')),
