@@ -9,7 +9,7 @@ class Blogs(models.Model):
     contenido = models.CharField(max_length=500)
     autor = models.CharField(max_length=60)
     fecha = models.DateField()
-    imagen = models.ImageField()
+    imagen = models.ImageField(upload_to="imagenes", null=True)
 
     def __str__(self):
         return f"ID:{self.idBlog} - Título:{self.titulo} - Subtítulo:{self.subtitulo} - Contenido: {self.contenido} - Autor: {self.autor} - Fecha: {self.fecha} - Imagen: {self.imagen}"
