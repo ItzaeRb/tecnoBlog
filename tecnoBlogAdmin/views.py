@@ -14,7 +14,7 @@ from tecnoBlog.models import *
 
 
 # Create your views here.
-# Create your views here.
+@login_required
 def inicioAdmin(request):
     return render(request, "homePageAdmin.html")
 
@@ -26,7 +26,7 @@ def loginAdmin(request):
             pwd = form.cleaned_data.get("password")
 
             user = authenticate(username = user, password = pwd)
-            if user is not None:
+            if user.get_username == 'tecnoBlogAdmin':
                 login(request, user)
                 return render(request, "homePageAdmin.html")
             else:

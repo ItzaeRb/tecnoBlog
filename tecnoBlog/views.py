@@ -26,7 +26,7 @@ def login_request(request):
             user = authenticate(username = user, password = pwd)
             if user is not None:
                 login(request, user)
-                return render(request, "homePage.html")
+                return render(request, "verPerfil.html")
             else:
                 #Si los datos de autenticacion no son correctos:
                 return render(request, "login.html", {"form": form})
