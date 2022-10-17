@@ -53,6 +53,11 @@ def verPosts(request=None):
     blogs = Blogs.objects.all() #Trae todo
     return render(request, "verPosts.html", {"blogs": blogs})
 
+@login_required
+def verPostsUser(request=None):
+    blogs = Blogs.objects.all() #Trae todo
+    return render(request, "verPostsUsuarios.html", {"blogs": blogs})
+
 
 @login_required
 def editProfile(request):

@@ -9,6 +9,7 @@ urlpatterns = [
     path('signIn/', registroUsuario),
     path('logout/', LogoutView.as_view(template_name = 'homePage.html'), name="Logout" ),
     path('tecnoBlog/verPosts', verPosts),
+    path('tecnoBlog/verPostsUsr',verPostsUser),
     path('profile/editarPerfil', editProfile),
     path('profile/cambiarPassword', changepass),
     path('profile/', perfilView),
