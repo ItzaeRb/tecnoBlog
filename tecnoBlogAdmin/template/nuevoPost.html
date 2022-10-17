@@ -21,10 +21,7 @@
 
 <div class="contenido_home">
     <div>
-        <form class="formNuevoPost" method="POST" action="/tecnoBlogAdmin/nuevoPost">{% csrf_token %}
-            <legend>ID: </legend>
-                <input type="number" name="idPost" id="idPost">
-                <br>
+        <form class="formNuevoPost" method="POST" action="/tecnoBlogAdmin/nuevoPost" enctype="multipart/form-data">{% csrf_token %}
             <legend>Título: </legend>
                 <input type="text" name="tituloPost" id="tituloPost">
             <br>
@@ -41,6 +38,11 @@
             <legend>Contenido</legend>
                 <br>
                 <textarea name="myeditor" placeholder="Contenido del post"></textarea>
+            <br>
+            <legend>Agrega una imagen al post:</legend>
+                <br>
+                <input type="file" name="imagenPost" id="imagenPost">
+            <br>
             <br>
             <button type="submit" class="btn btn-primary btndj">Publicar</button>
         </form>

@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm, UserEditForm
 from tecnoBlog.models import *
+from tecnoBlogAdmin.models import *
 
 
 
@@ -42,7 +43,13 @@ def loginAdmin(request):
 @login_required
 def nuevoPost(request):
     if request.method == 'POST':
-        blog = Blogs(idBlog = request.POST['idPost'], titulo = request.POST['tituloPost'], subtitulo = request.POST['subtituloPost'], contenido = request.POST['myeditor'], autor = request.POST['autorPost'], fecha = request.POST['fechaPost'])
+        blog = Blogs()
+        blog.titulo = request.POST.get('tituloPost')
+        blog.subtitulo = request.POST.get('subtituloPost')
+        blog.contenido = request.POST.get('myeditor')
+        blog.autor = request.POST.get('autorPost')
+        blog.fecha = request.POST.get('fechaPost')
+        blog.imagen = request.FILES.get('imagenPost')
         blog.save()
         blogs = Blogs.objects.all()    
         return render(request, "verPosts.html", {"blogs": blogs})
