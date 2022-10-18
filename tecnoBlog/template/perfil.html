@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div>
+<div class="contenido_home">
     <ul>
         <li>{{ user.username }}</li>
         <li>{{ user.email }}</li>
@@ -10,6 +10,7 @@
         <li>{{ user.last_name }}</li>
     </ul>
     <a href="/editarUsuario/">Editar Usuario</a>
+    <a href="/agregarAvatar/">Cambiar Imagen de Perfil</a>
 </div>
 
 {% endblock %}
