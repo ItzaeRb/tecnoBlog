@@ -2,15 +2,17 @@
 
 {% block content %}
 
-<h1>Signup</h1>
+<div class="contenido_home">
+    <h1>Signup</h1>
 
-<form class="contenido_home" action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
+    <form class="contenido_home" action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
 
-    <button type="submit">
-        Registrarse
-    </button>
-</form>
+        <button type="submit">
+            Registrarse
+        </button>
+    </form>
+</div>
 
 {% endblock %}

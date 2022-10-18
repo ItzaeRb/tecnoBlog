@@ -1,13 +1,16 @@
 {% extends 'homePage.html' %}
 
 {% block content %}
-<h1>hola signin</h1>
+<div class="contenido_home">
+    <h2>Inicio de Sesion</h2>
+    <br>
 {{ error }}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Iniciar Sesion
-    </button>
-</form>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>
+            Iniciar Sesion
+        </button>
+    </form>
+</div>
 {% endblock %}

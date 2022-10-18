@@ -3,14 +3,17 @@
 {% block content %}
 
 <div class="contenido_home">
+    <h2>Perfil</h2>
+    <br>
     <ul>
         <li>{{ user.username }}</li>
         <li>{{ user.email }}</li>
         <li>{{ user.first_name }}</li>
         <li>{{ user.last_name }}</li>
     </ul>
-    <a href="/editarUsuario/">Editar Usuario</a>
-    <a href="/agregarAvatar/">Cambiar Imagen de Perfil</a>
+    <a class="btn btn-success" href="/editarUsuario/">Editar Usuario</a>
+    <br>
+    <a class="btn btn-success" href="/agregarAvatar/">Cambiar Imagen de Perfil</a>
 </div>
 
 {% endblock %}

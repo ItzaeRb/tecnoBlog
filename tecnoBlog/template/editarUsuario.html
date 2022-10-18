@@ -5,6 +5,8 @@
 
 {% block contenido %}
 <div class="formNuevoPost">
+    <h2>Editar Usuario</h2>
+    <br>
     <form method="POST">{% csrf_token %}
         <table>
             {{ form.as_table }}
