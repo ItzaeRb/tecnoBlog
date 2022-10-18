@@ -3,7 +3,7 @@
 {% block content %}
     <div class="contenido_posts">
         <table class="table table-bordered">
-            <thead style="background-color: #FA9F42; text-align: center;">
+            <thead style="background-color: #77ACA2; text-align: center;">
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Titulo</th>
@@ -24,8 +24,8 @@
                 <th>{{blog.subtitulo}}</th>
                 <th>{{blog.autor}}</th>
                 <th><img style="width:60px;" src="{{ blog.imagen.url }}"></th>
-                <th><a href="/tecnoBlogAdmin/update_posts/{{blog.id}}" class="btn btn-warning">Edit</a></th>
-                <th><a href="#" class="btn btn-danger">Delete</a></th>
+                <th><a href="/tecnoBlogAdmin/update_posts/{{blog.id}}" class="btn btn-warning">Editar</a></th>
+                <th><a href="#" class="btn btn-danger">Eliminar</a></th>
             </tr>
             {%endfor%}
 
