@@ -14,3 +14,10 @@ class Blogs(models.Model):
     def __str__(self):
         return f"Título:{self.titulo} - Subtítulo:{self.subtitulo} - Contenido: {self.contenido} - Autor: {self.autor} - Fecha: {self.fecha} - Imagen: {self.imagen}"
 
+
+class Mensajes(models.Model):
+    destinatario = models.CharField(max_length=30)
+    contenido = models.CharField(max_length=150)
+    remitente = models.CharField(max_length=30)
+    fecha = models.DateField()
+    
