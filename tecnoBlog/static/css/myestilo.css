@@ -95,9 +95,26 @@ nav{
     width: 80%;
 }
 
+.contenido_posts{
+    width: 60%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    color: black;
+    box-shadow: 3px 2px 15px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    justify-content: center;
+}
+
 .listaPosts{
     background-color: #468189;
+    box-shadow: 3px 2px 5px 3px rgba(0, 0, 0, 0.5);
     width: 30%;
+    text-align: center;
+    display: inline;
 }
 
 .btndj{
