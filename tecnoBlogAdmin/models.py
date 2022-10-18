@@ -10,6 +10,7 @@ class Blogs(models.Model):
     fecha = models.DateField()
     imagen = models.ImageField(upload_to="imagenes", null=True)
 
+    
     def __str__(self):
         return f"Título:{self.titulo} - Subtítulo:{self.subtitulo} - Contenido: {self.contenido} - Autor: {self.autor} - Fecha: {self.fecha} - Imagen: {self.imagen}"
 
