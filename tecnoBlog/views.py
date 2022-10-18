@@ -1,4 +1,3 @@
-from ast import Pass
 from django.forms import PasswordInput
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
@@ -13,7 +12,12 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def inicio(request):
-    return render(request, "homePage.html")
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, 'homePage.html', {'avatar': avatar})
 
 def signup(request):
     if request.method == 'GET':
@@ -63,16 +67,31 @@ def signout(request):
 @login_required
 def verPosts(request=None):
     forms = Blogs.objects.all() #Trae todo
-    return render(request, "verPosts.html", {"forms": forms})
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, "verPosts.html", {"forms": forms, 'avatar': avatar})
 
 @login_required
 def nuevoPost(request):
     if request.method == 'POST':
         blog = Blogs(idBlog = request.POST['idPost'], titulo = request.POST['tituloPost'], subtitulo = request.POST['subtituloPost'], contenido = request.POST['myeditor'], autor = request.POST['autorPost'], fecha = request.POST['fechaPost'])
         blog.save()
-        blogs = Blogs.objects.all()    
-        return render(request, "verPosts.html", {"blogs": blogs})
-    return render(request, "nuevoPost.html")
+        blogs = Blogs.objects.all()
+        avatar = Avatar.objects.filter(user = request.user.id)
+        try:
+            avatar = avatar[0].image.url
+        except:
+            avatar = None    
+        return render(request, "verPosts.html", {"blogs": blogs, 'avatar': avatar})
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, "nuevoPost.html", {'avatar': avatar})
 
 
 @login_required
@@ -88,12 +107,27 @@ def editarUsuario(request, usuario_id):
             user_basic_info.last_name = form.cleaned_data.get("last_name")
             user_basic_info.save()
             usuario = User.objects.all()
-            return render(request, "homePage.html", {'usuario':usuario})
+            avatar = Avatar.objects.filter(user = request.user.id)
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, 'homePage.html', {'avatar': avatar})
         else:
-            return render(request, "homePage.html", {"form": form})
+            avatar = Avatar.objects.filter(user = request.user.id)
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, 'homePage.html', {"form":form, 'avatar': avatar})
     else:
         form = UserEditForm(initial={"email": usuario.email, "username": usuario.username, "first_name":usuario.first_name, "last_name": usuario.last_name})
-    return render(request, "editarUsuario.html", {"form":form, "usuario":usuario})
+        avatar = Avatar.objects.filter(user = request.user.id)
+        try:
+            avatar = avatar[0].image.url
+        except:
+            avatar = None
+        return render(request, "editarUsuario.html", {"form":form, "usuario":usuario, 'avatar':avatar})
 
 
 @login_required
@@ -104,26 +138,45 @@ def changePass(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            return render(request, 'homePage.html')
+            avatar = Avatar.objects.filter(user = request.user.id)
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, 'homePage.html', {'avatar': avatar})
     else:
         form = changePasswordForm(user = request.user)
-    return render(request, 'changePass.html', {'form':form}, {'usuario': usuario})
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, 'changePass.html', {'form':form,'usuario': usuario, 'avatar': avatar})
 
 @login_required
 def perfilView(request):
-    return render(request, 'perfil.html')
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, 'perfil.html', {'avatar': avatar})
 
 
 @login_required
 def agregarAvatar(request):
     if request.method == 'POST':
-        form = avatarForm(request.POST, request.FILE) # .file para tener la interpretacion de un archivo.
+        form = avatarForm(request.POST, request.FILES) # .file para tener la interpretacion de un archivo.
         if form.is_valid():
             user = User.objects.get(username = request.user)
             avatar = Avatar(user = user, image = form.cleaned_data['avatar'], id = request.user.id)
             avatar.save()
             avatar = Avatar.objects.filter(user = request.user.id)
-            return render(request, 'home.html', {'avatar': avatar[0]}.image.url) # oapra mostrar el avatar todas lsa veces que se llame a home.html
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, 'homePage.html', {'avatar': avatar})
     else:
         try:
             avatar = Avatar.objects.filter(user = request.user.id)
