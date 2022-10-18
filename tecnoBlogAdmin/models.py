@@ -8,7 +8,7 @@ class Blogs(models.Model):
     contenido = models.CharField(max_length=500)
     autor = models.CharField(max_length=60)
     fecha = models.DateField()
-    imagen = models.ImageField(upload_to="imagenes", null=True)
+    imagen = models.ImageField(upload_to="imagenes", null=True, blank = True)
 
     
     def __str__(self):

@@ -1,3 +1,4 @@
+import re
 from tkinter.messagebox import NO
 from django.shortcuts import render, redirect
 
@@ -75,7 +76,7 @@ def update_posts(request, id_blog):
     blog = Blogs.objects.get(id = id_blog)
 
     if request.method == 'POST':
-        formulario = form_posts(request.POST)
+        formulario = form_posts(request.POST, request.FILES)
 
         if formulario.is_valid():
             informacion = formulario.cleaned_data
@@ -87,10 +88,10 @@ def update_posts(request, id_blog):
             blog.imagen = informacion['imagen']
             blog.save()
             posts = Blogs.objects.all()
-            return render (request, "tecnoBlogAdmin/read_posts.html", {"blogs":posts})
+            return render (request, "read_posts.html", {"blogs":posts})
     else:
-        formulario = form_posts(initial={'titulo':blog.titulo, 'subtitulo':blog.subtitulo, 'contenido':blog.contenido, 'autor':blog.autor, 'fecha':blog.autor, 'imagen':blog.imagen})
-    return render(request, "tecnoBlogAdmin/editarPost.html", {"formulario":formulario})
+        formulario = form_posts(initial={'titulo':blog.titulo, 'subtitulo':blog.subtitulo, 'contenido':blog.contenido, 'autor':blog.autor, 'fecha':blog.fecha, 'imagen':blog.imagen})
+    return render(request, "editarPost.html", {"formulario":formulario})
 
 
 
