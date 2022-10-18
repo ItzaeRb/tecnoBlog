@@ -1,26 +1,25 @@
 {% extends 'homePage.html' %}
 
 {% block content %}
-    <div class="contenido_home">
-        {% for blog in blogs %}
-        <div class="row mb-2">
-            <div class="col-md-6">
-              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 text-primary">{{ blog.fecha }}</strong>
-                  <h3 class="mb-0">{{ blog.titulo }}</h3>
-                  <div class="mb-1 text-muted">Publicado por: {{ blog.autor }}</div>
-                  <p class="card-text mb-auto">{{ blog.contenido | safe }}</p>
-                  <a href="#" class="stretched-link">Leer más</a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                  <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
-        
-                </div>
+    <div class="contenido_posts">
+      {% for blog in blogs %}
+      <div class="row mb-2">
+          <div class="col-md-12">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary">{{ blog.fecha }}</strong>
+                <h3 class="mb-0">{{ blog.titulo }}</h3>
+                <div class="mb-1 text-muted">Publicado por: {{ blog.autor }}</div>
+                <p class="card-text mb-auto">{{ blog.contenido | safe }}</p>
+                <a href="#" class="stretched-link">Leer más</a>
+              </div>
+              <div class="col-auto d-none d-lg-block" style="margin: auto auto;">
+                <img src="{{ blog.imagen.url }}" style="width:300px; height: auto;">
               </div>
             </div>
           </div>
-          {% endfor %}
+        </div>
+        {% endfor %}
     </div>
 {% endblock %}
 

@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm, UserEditForm
-from tecnoBlog.models import *
+from tecnoBlogAdmin.models import *
 
 
 # Create your views here.
