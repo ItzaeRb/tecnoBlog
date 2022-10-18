@@ -1,0 +1,33 @@
+{% extends 'homePageAdmin.html' %}
+
+{% block content %}
+    <div class="contenido_posts">
+        <table class="table table-bordered">
+            <thead style="background-color: #FA9F42; text-align: center;">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Subtitulo</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+                
+              </tr>
+            </thead>
+    
+            <tbody>
+             {% for blog in blogs %}
+            <tr>
+                <th>{{blog.id}}</th>
+                <th>{{blog.titulo}}</th>
+                <th>{{blog.subtitulo}}</th>
+                <th>{{blog.autor}}</th>
+                <th><img style="width:60px;" src="{{ blog.imagen.url }}"></th>
+                <th><a href="/tecnoBlogAdmin/update_posts/{{blog.id}}" class="btn btn-warning">Edit</a></th>
+                <th><a href="#" class="btn btn-danger">Delete</a></th>
+            </tr>
+            {%endfor%}
+
+    </div>
+{% endblock %}

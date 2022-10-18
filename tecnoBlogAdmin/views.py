@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm, UserEditForm
 from tecnoBlog.models import *
 from tecnoBlogAdmin.models import *
+from tecnoBlogAdmin.forms import *
 
 @login_required
 def homePageAdmin(request):
@@ -57,7 +58,44 @@ def nuevoPost(request):
         return render(request, "verPosts.html", {"blogs": blogs})
     return render(request, "nuevoPost.html")
 
+
 @login_required
 def verPostsAdmin(request=None):
     blogs = Blogs.objects.all() #Trae todo
     return render(request, "verPostsAdmin.html", {"blogs": blogs})
+
+@login_required
+def readPosts(request=None):
+    blogs = Blogs.objects.all() #Trae todo
+    return render(request, "read_posts.html", {"blogs": blogs})
+
+
+
+def update_posts(request, id_blog):
+    blog = Blogs.objects.get(id = id_blog)
+
+    if request.method == 'POST':
+        formulario = form_posts(request.POST)
+
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+            blog.titulo = informacion['titulo']
+            blog.subtitulo = informacion['subtitulo']
+            blog.contenido = informacion['contenido']
+            blog.autor = informacion['autor']
+            blog.fecha = informacion['fecha']
+            blog.imagen = informacion['imagen']
+            blog.save()
+            posts = Blogs.objects.all()
+            return render (request, "tecnoBlogAdmin/read_posts.html", {"blogs":posts})
+    else:
+        formulario = form_posts(initial={'titulo':blog.titulo, 'subtitulo':blog.subtitulo, 'contenido':blog.contenido, 'autor':blog.autor, 'fecha':blog.autor, 'imagen':blog.imagen})
+    return render(request, "tecnoBlogAdmin/editarPost.html", {"formulario":formulario})
+
+
+
+
+
+
+
+
