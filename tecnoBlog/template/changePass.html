@@ -1,17 +1,18 @@
 {% extends 'homePage.html' %}
 
 {% block content %}
+<div class="contenido_home">
     <h1>Hola changepass</h1>
-    <h2>{{ usuario }}</h2>
-<div class="formNuevoPost">
-    <form method="POST">{% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <br>
-        <button type="submit" class="btn btn-success" >Registrar</button>
-    </form>
-    <a href="/changePass/">Cambiar Contraseña</a>
+    <h2>Usuario: {{ usuario }}</h2>
+    <div class="formNuevoPost">
+        <form method="POST">{% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <br>
+            <button type="submit" class="btn btn-success" >Registrar</button>
+        </form>
+    </div>
 </div>
 
 {% endblock %}
