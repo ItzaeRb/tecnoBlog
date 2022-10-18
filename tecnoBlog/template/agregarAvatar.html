@@ -1,0 +1,14 @@
+{% extends 'homePage.html' %}
+
+{% block content %}
+<div>
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %} 
+        <table>
+            {{ form.as_p }}
+        </table>
+        <br>
+        <button type="submit" class="btn btn-success" >Registrar</button>
+    </form>
+</div>
+
+{% endblock %}
