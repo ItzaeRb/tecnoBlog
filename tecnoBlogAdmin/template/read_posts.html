@@ -25,7 +25,7 @@
                 <th>{{blog.autor}}</th>
                 <th><img style="width:60px;" src="{{ blog.imagen.url }}"></th>
                 <th><a href="/tecnoBlogAdmin/update_posts/{{blog.id}}" class="btn btn-warning">Editar</a></th>
-                <th><a href="#" class="btn btn-danger">Eliminar</a></th>
+                <th><a href="/tecnoBlogAdmin/delete_posts/{{blog.id}}" class="btn btn-danger">Eliminar</a></th>
             </tr>
             {%endfor%}
 

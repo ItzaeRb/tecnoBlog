@@ -12,5 +12,6 @@ urlpatterns = [
     path('tecnoBlogAdmin/verPostsAdmin',verPostsAdmin),
     path('tecnoBlogAdmin/readPosts', readPosts),
     path('tecnoBlogAdmin/update_posts/<id_blog>', update_posts),
+    path('tecnoBlogAdmin/delete_posts/<id_blog>', delete_posts),
 
 ]

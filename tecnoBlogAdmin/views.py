@@ -71,13 +71,10 @@ def readPosts(request=None):
     return render(request, "read_posts.html", {"blogs": blogs})
 
 
-
 def update_posts(request, id_blog):
     blog = Blogs.objects.get(id = id_blog)
-
     if request.method == 'POST':
         formulario = form_posts(request.POST, request.FILES)
-
         if formulario.is_valid():
             informacion = formulario.cleaned_data
             blog.titulo = informacion['titulo']
@@ -86,7 +83,7 @@ def update_posts(request, id_blog):
             blog.autor = informacion['autor']
             blog.fecha = informacion['fecha']
             blog.imagen = informacion['imagen']
-            blog.save()
+            blog.save() 
             posts = Blogs.objects.all()
             return render (request, "read_posts.html", {"blogs":posts})
     else:
@@ -94,7 +91,11 @@ def update_posts(request, id_blog):
     return render(request, "editarPost.html", {"formulario":formulario})
 
 
-
+def delete_posts(request, id_blog):
+    blog = Blogs.objects.get(id = id_blog)
+    blog.delete()
+    posts = Blogs.objects.all()    
+    return render(request, "read_posts.html", {"blogs": posts})
 
 
 
