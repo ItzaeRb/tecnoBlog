@@ -1,0 +1,17 @@
+
+{% extends "homePage.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<div class="formNuevoPost">
+    <form method="POST">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <br>
+        <button type="submit" class="btn btn-success" >Registrar</button>
+    </form>
+    <a href="/changePass/">Cambiar Contraseña</a>
+</div>
+{% endblock %}

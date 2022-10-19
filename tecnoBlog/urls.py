@@ -12,5 +12,6 @@ urlpatterns = [
     path('tecnoBlog/verPostsUsr',verPostsUser),
     path('profile/editarPerfil', editProfile),
     path('profile/cambiarPassword', changepass),
-    path('profile/', perfilView),
+    path('agregarAvatar/', agregarAvatar),
+    path('perfil/', perfilView),
 ]
