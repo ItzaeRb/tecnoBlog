@@ -61,18 +61,28 @@ def registroUsuario(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect(signin)
+            return redirect('login/')
         else:
             return render(request, "login.html", {"form":form})
     form = UserRegisterForm()
     return render(request, 'registro.html', {'form': form})
 
 
-@login_required
 def verPostsUser(request=None):
     blogs = Blogs.objects.all() #Trae todo
     return render(request, "verPostsUsuarios.html", {"blogs": blogs})
 
+def verPosts(request=None):
+    blogs = Blogs.objects.all() #Trae todo
+    return render(request, "verPosts.html", {"blogs": blogs})
+
+def postCompleto(request, id_blog):
+    blog = Blogs.objects.get(id = id_blog)
+    return render(request,"postCompleto.html", {"blogs": blog})
+
+def postCompletoUsr(request, id_blog):
+    blog = Blogs.objects.get(id = id_blog)
+    return render(request,"postCompletoUsr.html", {"blogs": blog})
 
 @login_required
 def editProfile(request):
@@ -100,10 +110,7 @@ def signout(request):
     logout(request)
     return redirect(inicio)
 
-@login_required
-def verPosts(request=None):
-    forms = Blogs.objects.all() #Trae todo
-    return render(request, "verPosts.html", {"forms": forms})
+
 
 @login_required
 def nuevoPost(request):
