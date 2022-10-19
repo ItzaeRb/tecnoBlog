@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm, UserEditForm
-from tecnoBlogAdmin.models import Blogs
+from tecnoBlogAdmin.models import Blogs, Mensajes
 from tecnoBlog.models import *
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 
@@ -101,6 +101,7 @@ def editProfile(request):
             return render(request, 'homePage.html', {'form':form})
     else: 
         form = UserEditForm(initial={'email': usuario.email, 'username': usuario.username, 'first_name': usuario.first_name, 'last_name': usuario.last_name })
+        
     return render(request, 'editProfile.html', {'form':form, 'usuario':usuario}) 
 
 
@@ -185,4 +186,11 @@ def agregarAvatar(request):
 
 @login_required
 def perfilView(request):
-    return render(request, 'verPerfil.html')
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, 'verPerfil.html', {'avatar': avatar})
+
+
