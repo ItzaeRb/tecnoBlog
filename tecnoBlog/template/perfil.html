@@ -1,15 +1,16 @@
-{% extends 'homePage.html' %}
+{% extends "homePageUsuario.html" %}
+
 
 {% block content %}
 
-<div>
-    <ul>
-        <li>{{ user.username }}</li>
-        <li>{{ user.email }}</li>
-        <li>{{ user.first_name }}</li>
-        <li>{{ user.last_name }}</li>
-    </ul>
-    <a href="/editarUsuario/">Editar Usuario</a>
-</div>
+<div class="contenido_home">
+    <h3>Mi perfil</h3>
+        <ul>
+            <li>Username: {{ user.username }}</li>
+            <li>E-mail: {{ user.email }}</li>
+            <li>Nombre: {{ user.first_name }}</li>
+            <li>Apellidos: {{ user.last_name }}</li>
+        </ul>
+        <br>
 
 {% endblock %}

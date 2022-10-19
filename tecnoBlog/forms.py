@@ -3,7 +3,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from .models import *
+from tecnoBlog.models import *
+from tecnoBlogAdmin.models import *
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()

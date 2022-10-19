@@ -70,6 +70,9 @@ def readPosts(request=None):
     blogs = Blogs.objects.all() #Trae todo
     return render(request, "read_posts.html", {"blogs": blogs})
 
+def postComplete(request, id_blog):
+    blog = Blogs.objects.get(id = id_blog)
+    return render(request,"postComplete.html", {"blogs": blog})
 
 def update_posts(request, id_blog):
     blog = Blogs.objects.get(id = id_blog)

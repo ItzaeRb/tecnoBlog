@@ -1,0 +1,17 @@
+{% extends 'homePageAdmin.html' %}
+
+{% block content %}
+<div class="contenido_posts">
+    <form method="POST"  enctype="multipart/form-data">{% csrf_token %}
+        <h2>{{ blogs.titulo }}</h2>
+        <h3>{{ blogs.subtitulo }}</h3>
+            
+        <legend>Publicado por {{ blogs.autor }}</legend>
+        <label>{{ blogs.fecha }}</label>
+        <p>{{ blogs.contenido | safe }}</p>
+        
+        <img src="{{ blogs.imagen.url }}" style="width:300px; height: auto;">
+    </form>
+    {% endblock %}
+</div>
+

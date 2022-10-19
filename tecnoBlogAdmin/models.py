@@ -17,7 +17,7 @@ class Blogs(models.Model):
 
 class Mensajes(models.Model):
     destinatario = models.CharField(max_length=30)
-    contenido = models.CharField(max_length=150)
+    contenido = models.CharField(max_length=500)
     remitente = models.CharField(max_length=30)
     fecha = models.DateField()
     

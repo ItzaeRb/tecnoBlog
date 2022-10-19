@@ -1,17 +1,16 @@
-{% extends 'homePage.html' %}
+{% extends 'homePageUsuario.html' %}
 
 {% block content %}
-    <h1>Hola changepass</h1>
-    <h2>{{ usuario }}</h2>
-<div class="formNuevoPost">
-    <form method="POST">{% csrf_token %}
+
+<div class="contenido_home">
+    <h1>Cambiar contraseña</h1>
+    <form class="login"method="POST">
         <table>
+            {% csrf_token %}
             {{ form.as_table }}
         </table>
-        <br>
-        <button type="submit" class="btn btn-success" >Registrar</button>
+        <input type="submit" value="Aceptar">
     </form>
-    <a href="/changePass/">Cambiar Contraseña</a>
 </div>
 
 {% endblock %}

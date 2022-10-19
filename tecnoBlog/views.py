@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from tecnoBlog.forms import UserRegisterForm, UserEditForm
-from tecnoBlogAdmin.models import *
+from tecnoBlogAdmin.models import Blogs
 from tecnoBlog.models import *
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 
@@ -21,6 +21,16 @@ from .forms import UserRegisterForm, blogForm, UserEditForm, changePasswordForm,
 # Create your views here.
 def inicio(request):
     return render(request, "homePage.html")
+
+@login_required
+def inicioUsuario(request):
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, 'homePageUsuario.html', {'avatar': avatar})
+    
 
 def login_request(request):
     if request.method == "POST":
@@ -32,7 +42,12 @@ def login_request(request):
             user = authenticate(username = user, password = pwd)
             if user is not None:
                 login(request, user)
-                return render(request, "verPerfil.html")
+                avatar = Avatar.objects.filter(user = request.user.id)
+                try:
+                    avatar = avatar[0].image.url
+                except:
+                    avatar = None
+                return render(request, 'homePageUsuario.html', {'avatar': avatar})
             else:
                 #Si los datos de autenticacion no son correctos:
                 return render(request, "login.html", {"form": form})
@@ -52,11 +67,6 @@ def registroUsuario(request):
     form = UserRegisterForm()
     return render(request, 'registro.html', {'form': form})
 
-
-
-def verPosts(request=None):
-    blogs = Blogs.objects.all() #Trae todo
-    return render(request, "verPosts.html", {"blogs": blogs})
 
 @login_required
 def verPostsUser(request=None):
@@ -84,22 +94,6 @@ def editProfile(request):
     return render(request, 'editProfile.html', {'form':form, 'usuario':usuario}) 
 
 
-@login_required
-def changepass(request):
-    usuario = request.user
-    if request.method == 'POST':
-        form = PasswordChangeForm(data = request.POST, user = usuario)
-        #form = ChangePasswordForm(data = request.POST, user = request.user)
-def signin(request):
-    if request.method == 'GET':
-        return render(request, 'signin.html', {'form':AuthenticationForm})
-    else:
-        user = authenticate(username=request.POST['username'],password=request.POST['password'])
-        if user is None: #si la autenticacion no fue valida.
-            return render(request, 'signin.html', {'form':AuthenticationForm, 'error': 'No se pudo validar el usuario'})
-        else:
-            login(request, user)#loguea al usuario ya atutenicado y guarda la sesion
-            return redirect('/homePage/')
 
 @login_required
 def signout(request):
@@ -143,37 +137,45 @@ def editarUsuario(request, usuario_id):
 
 
 @login_required
-def changePass(request):
-    usuario = request.user #traemos los datos del usuario
+def changepass(request):
+    usuario = request.user
     if request.method == 'POST':
-        form = changePasswordForm(data = request.POST, user = usuario) #un form que nos da django
+        form = PasswordChangeForm(data = request.POST, user = usuario)
+        #form = ChangePasswordForm(data = request.POST, user = request.user)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
             return render(request, 'homePage.html')
     else:
-        form = changePasswordForm(user = request.user)
-    return render(request, 'changePass.html', {'form':form}, {'usuario': usuario})
-
-@login_required
-def perfilView(request):
-    return render(request, 'perfil.html')
+        form = PasswordChangeForm(request.user)
+        #form = ChangePasswordForm(user = request.user)
+    return render(request, 'changePassword.html', {'form': form, 'usuario': usuario})
 
 
 @login_required
 def agregarAvatar(request):
     if request.method == 'POST':
-        form = avatarForm(request.POST, request.FILE) # .file para tener la interpretacion de un archivo.
+        form = avatarForm(request.POST, request.FILES)
+        print(form)
+        print(form.is_valid())
         if form.is_valid():
             user = User.objects.get(username = request.user)
             avatar = Avatar(user = user, image = form.cleaned_data['avatar'], id = request.user.id)
             avatar.save()
             avatar = Avatar.objects.filter(user = request.user.id)
-            return render(request, 'home.html', {'avatar': avatar[0]}.image.url) # oapra mostrar el avatar todas lsa veces que se llame a home.html
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None           
+            return render(request, 'homePageUsuario.html', {'avatar': avatar})
     else:
         try:
             avatar = Avatar.objects.filter(user = request.user.id)
             form = avatarForm()
         except:
             form = avatarForm()
-    return render(request, 'agregarAvatar.html', {'form': form}) 
+    return render(request, 'agregarAvatar.html', {'form': form})
+
+@login_required
+def perfilView(request):
+    return render(request, 'verPerfil.html')
