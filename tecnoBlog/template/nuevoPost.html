@@ -22,9 +22,7 @@
 <div class="contenido_home">
     <div>
         <form class="formNuevoPost" method="POST" action="/verPosts/">{% csrf_token %}
-            <legend>ID: </legend>
-                <input type="number" name="idPost" id="idPost">
-                <br>
+            
             <legend>Título: </legend>
                 <input type="text" name="tituloPost" id="tituloPost">
             <br>

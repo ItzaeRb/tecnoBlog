@@ -194,3 +194,16 @@ def perfilView(request):
     return render(request, 'verPerfil.html', {'avatar': avatar})
 
 
+
+@login_required
+def nuevoMensaje(request):
+    if request.method == 'POST':
+        mensaje = Mensajes(destinatario = request.POST['destinatario'], contenido = request.POST['contenido'], remitente = request.POST['remitente'], fecha = request.POST['fecha'])
+        mensaje.save()
+        mensajes = Mensajes.objects.all()    
+        return render(request, "verMensajes.html", {"mensajes": mensajes})
+    return render(request, "nuevoMensaje.html")
+
+def verMensajes(request=None):
+    mensajes = Mensajes.objects.all() #Trae todo
+    return render(request, "verMensajes.html", {"mensajes": mensajes})

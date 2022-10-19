@@ -1,0 +1,48 @@
+{% extends 'homePageUsuario.html' %}
+
+{% block content %}
+<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+
+<script>
+    window.onload = function() {
+        CKEDITOR.replace('contenido');
+    };
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#contenido').ckeditor({
+            toolbar: 'Full',
+            enterMode : CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_P
+        });
+    });
+</script>
+
+<div class="contenido_home">
+    <H2>Escribe un nuevo mensaje</H2>
+    <div>
+        <form class="formNuevoPost" method="POST" action="/profile/nuevoMensaje" enctype="multipart/form-data">{% csrf_token %}
+            <legend>Destinatario: </legend>
+                <input type="text" name="destinatario" id="destinatario">
+            <br>
+            <legend>Contenido</legend>
+                <br>
+                <textarea name="contenido" placeholder="Contenido del post"></textarea>
+            <br>
+            <legend>Remitente: </legend>
+                <input type="text" name="remitente" id="remitente">
+                <br>
+            <legend>Fecha: </legend>
+                <input type="date" name="fecha" id="fecha">
+                <br>
+                <br>
+            
+            
+            <button type="submit" class="btn btn-primary btndj">Enviar</button>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}

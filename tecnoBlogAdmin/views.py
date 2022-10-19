@@ -57,7 +57,7 @@ def nuevoPost(request):
         blog.save()
         blogs = Blogs.objects.all()    
         return render(request, "verPosts.html", {"blogs": blogs})
-    return render(request, "nuevoPost.html")
+    return render(request, "nuevoPostAdmin.html")
 
 
 @login_required

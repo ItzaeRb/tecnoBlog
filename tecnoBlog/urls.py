@@ -17,4 +17,6 @@ urlpatterns = [
     path('profile/cambiarPassword', changepass),
     path('profile/agregarAvatar/', agregarAvatar),
     path('perfil/', perfilView),
+    path('profile/nuevoMensaje', nuevoMensaje),
+    path('profile/verMensajes', verMensajes),
 ]

@@ -5,7 +5,7 @@ from django.db import models
 class Blogs(models.Model):
     titulo = models.CharField(max_length=40)
     subtitulo = models.CharField(max_length=60)
-    contenido = models.CharField(max_length=500)
+    contenido = models.CharField(max_length=1500)
     autor = models.CharField(max_length=60)
     fecha = models.DateField()
     imagen = models.ImageField(upload_to="imagenes", null=True, blank = True)
