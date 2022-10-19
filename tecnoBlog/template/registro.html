@@ -1,16 +1,14 @@
 {% extends 'homePage.html' %}
 
 {% block content %}
-
-<h1>Signup</h1>
-
-<form class="contenido_home" action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-
-    <button type="submit">
-        Registrarse
-    </button>
-</form>
+<div class="contenido_home">
+    <h3>Formulario de Registro</h3>
+    <form class="signin" action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <button class="btn btn-primary btndj" type="submit">Registrarte</button>
+    </form>
+</div>
 
 {% endblock %}
