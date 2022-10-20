@@ -105,9 +105,9 @@ def editProfile(request):
             user_basic_info.first_name = form.cleaned_data.get('first_name')
             user_basic_info.last_name  = form.cleaned_data.get('last_name')
             user_basic_info.save()
-            return render(request, 'homePage.html')
+            return render(request, 'homePageUsuario.html')
         else:
-            return render(request, 'homePage.html', {'form':form})
+            return render(request, 'homePageUsuario.html', {'form':form})
     else: 
         form = UserEditForm(initial={'email': usuario.email, 'username': usuario.username, 'first_name': usuario.first_name, 'last_name': usuario.last_name })
         
