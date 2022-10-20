@@ -1,0 +1,137 @@
+body{
+    background-color: #596c79;
+}
+
+.contenido1{
+    position: relative;
+    top: 60px;
+    border: 1px solid red;
+}
+
+nav{
+    background-color: #031926;
+}
+
+.titulo_nav{
+    color: aqua;
+    text-decoration: none;
+    font-size:x-large;
+}
+
+.nav-link{
+    color: aliceblue;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.nav-item :hover{
+    color: yellow;
+}
+
+.bi-pc-display{
+    color: aqua;
+    margin-left:5px; 
+    margin-right: 10px; 
+}
+
+
+.contenidoEstudiantes{
+    background-color: #030354;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.encabezado{
+    text-align: center;
+}
+
+.login{
+    display: flex;
+    width: 30%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.signin{
+    display: flex;
+    width: 30%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.editarPerfil{
+    display: flex;
+    width: 30%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+
+.contenido_home{
+    display: flex;
+    width: 90%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    color: black;
+    box-shadow: 3px 2px 15px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.ckeditor{
+    text-align: center;
+    width: 80%;
+}
+
+.contenido_posts{
+    width: 60%;
+    height: auto;
+    margin:auto;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    color: black;
+    box-shadow: 3px 2px 15px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    justify-content: center;
+}
+
+.listaPosts{
+    background-color: #468189;
+    box-shadow: 3px 2px 5px 3px rgba(0, 0, 0, 0.5);
+    width: 30%;
+    text-align: center;
+    display: inline;
+}
+
+.btndj{
+    border-radius: 20px !important;
+}
+
+.div_btn{
+    text-align: center;
+}
+
+.leerMas{
+    text-decoration: none;
+    color: white;
+}
+
+.leerMas:hover{
+    color: #031926;
+}
+
+/*soy un comentario*/
