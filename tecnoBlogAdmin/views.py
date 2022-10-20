@@ -56,7 +56,7 @@ def nuevoPost(request):
         blog.imagen = request.FILES.get('imagenPost')
         blog.save()
         blogs = Blogs.objects.all()    
-        return render(request, "verPosts.html", {"blogs": blogs})
+        return render(request, "verPostsAdmin.html", {"blogs": blogs})
     return render(request, "nuevoPostAdmin.html")
 
 

@@ -71,9 +71,20 @@
 </body>
 <body>
   {% block content %}
+  
   <div class="contenido_home">
     <h2>Bienvenido {{ user.username }}</h2>
+    <div style="text-align: center;">
+      <img src="https://i1.sndcdn.com/avatars-000833586793-c66p5l-t500x500.jpg" style="border-radius:20px; width:200px;">
+    </div>
+    <br>
+    <h5>Este es un blog creado con la finalidad de mostrar algunas funcionalidades básicas aprendidas dentro del curso 
+      de Python, además podrás encontrar información acerca de las personas detrás del desarrollo de este proyecto y algunos posts con noticias e información relevante acerca de la tecnología y el mundo digital.
+    </h5>
+    <br>
+    <h5>Si eres administrador ingresa <a href="/tecnoBlogAdmin/login">aquí</a></h5>
   </div>
   {% endblock %}
+
 </body>
 </html>
