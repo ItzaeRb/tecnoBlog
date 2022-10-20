@@ -1,11 +1,13 @@
 from re import template
 from django.urls import path
 from tecnoBlogAdmin.views import *
+from tecnoBlog.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('homePageAdmin/', homePageAdmin),
     path('tecnoBlogAdmin/', inicioAdmin),
+    path('AboutUsAdmin/', aboutUsAdmin),
     path('tecnoBlogAdmin/login', loginAdmin),
     path('logoutAdmin/', LogoutView.as_view(template_name = 'homePage.html')),
     path('tecnoBlogAdmin/nuevoPost', nuevoPost),

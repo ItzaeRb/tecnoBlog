@@ -25,6 +25,12 @@ def inicio(request):
 def aboutUs(request):
     return render(request, "About.html")
 
+def aboutUsers(request):
+    return render(request, "AboutUsers.html")
+
+def aboutUsAdmin(request):
+    return render(request, "AboutUsAdmin.html")
+
 @login_required
 def inicioUsuario(request):
     avatar = Avatar.objects.filter(user = request.user.id)
