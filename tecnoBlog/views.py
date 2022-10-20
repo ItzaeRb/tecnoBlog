@@ -22,6 +22,9 @@ from .forms import UserRegisterForm, blogForm, UserEditForm, changePasswordForm,
 def inicio(request):
     return render(request, "homePage.html")
 
+def aboutUs(request):
+    return render(request, "About.html")
+
 @login_required
 def inicioUsuario(request):
     avatar = Avatar.objects.filter(user = request.user.id)
